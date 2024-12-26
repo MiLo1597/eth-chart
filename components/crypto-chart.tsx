@@ -27,8 +27,7 @@ const markerTemplate = (type: string, time?: string) => `
     </svg>
   </div>
 `
-
-export function CryptoChart() {
+const CryptoChart: React.FC = () => {
   const [currentPrice, setCurrentPrice] = useState(3464.85)
   const [priceChange, setPriceChange] = useState(2.08)
   const chartRef = useRef<HighchartsReact.RefObject>(null)
@@ -397,3 +396,5 @@ export function CryptoChart() {
     </div>
   )
 }
+
+export default CryptoChart

@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  webpack: (config: any) => {
+    // Handle Highcharts requirements
+    config.externals = [...(config.externals || []), { canvas: 'canvas' }]
+    return config
+  }
+}
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = nextConfig
