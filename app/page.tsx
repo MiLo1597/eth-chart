@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
@@ -161,8 +162,9 @@ export default function CryptoChart() {
       },
       dataLabels: {
         enabled: true,
-        formatter: function() {
-          if (this.point === this.series.points[this.series.points.length - 1]) {
+        formatter: function(this: any) {
+          const point = this as Highcharts.Point; // Type assertion
+          if (point === this.series.points[this.series.points.length - 1]) {
             const isAboveBase = this.y > basePrice.current;
             return `<div style="
               position: relative;
@@ -183,7 +185,7 @@ export default function CryptoChart() {
           textOutline: 'none'
         },
         crop: false,
-        overflow: 'none'
+        overflow: "justify",
       }
     }],
     tooltip: {
@@ -217,7 +219,7 @@ export default function CryptoChart() {
       return data
     }
 
-    setChartOptions(prevOptions => ({
+    setChartOptions((prevOptions: any) => ({
       ...prevOptions,
       chart: {
         ...prevOptions.chart,
