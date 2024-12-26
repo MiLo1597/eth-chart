@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+'use client'
 
 import { useState, useEffect, useRef } from 'react'
 import Highcharts from 'highcharts/highstock'
@@ -162,8 +163,7 @@ export default function CryptoChart() {
       dataLabels: {
         enabled: true,
         formatter: function(this: any) {
-          const point = this as Highcharts.Point; // Type assertion
-          if (point === this.series.points[this.series.points.length - 1]) {
+          if (this.point === this.series.points[this.series.points.length - 1]) {
             const isAboveBase = this.y > basePrice.current;
             return `<div style="
               position: relative;
